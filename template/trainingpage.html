@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <title>FloralSegment</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <h1></h1>
+            </div>
+            <div class="row justify-content ">
+                <div class="col">
+                    
+                </div>
+                <div class="col text-justify">
+                    <h1 class="text-center">FloralSegment</h1>
+                </div>
+                <div class="col">
+                    
+                </div>
+            </div>
+            <div class="row">
+                <h1></h1>
+            </div>
+            <div class="row">
+                <h1></h1>
+            </div>
+            <div class="row">
+                <h1></h1>
+            </div>
+            <div class="row">
+                <div class="col col-sm-2">
+                </div>
+                <div class="col col-sm-8">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Voir l'ensemble des clusters</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-2">
+                </div>
+                <div class="col col-sm-8 text-justify">
+                    {% for key, data in image_urls.items() %}
+                        <div class="text-justify"><h1> Cluster {{key}}</h1></div>
+                        {% for image in data %}
+                            <img src="{{ image }}" alt="Image" width="130" height="130" style="margin-left: 1%; margin-right: 1%; margin-bottom: 2%; border-radius: 3%;">
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-2">
+                </div>
+                <div class="col col-sm-8">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Lancer l'entrainement sur les donnes</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-2">
+                </div>
+                <div class="col col-sm-8">
+                    <h1 style=" display: inline;"> Lancer l'entrainement du Kmeans sur les donnees dans la base Cassandra : </h1>
+                    <a href="{{ url_for('training') }}">
+                        <button type="submit" class="btn btn-primary btn-sm" style=" display: inline; margin-bottom: 2%;">Lancer </button>
+                    </a>
+                    {% if entrainementFini: %} <button type="button" class="btn btn-success" style="margin-bottom: 2%;">  Entrainement fini </button> {% else : %}<button type="button" class="btn btn-secondary" style="margin-bottom: 2%;"></button> Entrainement Echoué </button>{% endif %}
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-2">
+                </div>
+                <div class="col col-sm-8">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Lancer l'ingestion des donnes</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-sm-2">
+                </div>
+                <div class="col col-sm-8">
+                    <h1 style=" display: inline;"> Lancer l'ingestion d'un ensemble d'image dans la base Cassandra (un dossier de preference) : </h1>
+                    <div class="row">
+                        <div class="col col-sm-3">
+                        </div>
+                        <div class="col col-sm-8 " style="margin-bottom: 2%; margin-top: 2%; ">
+                            <form action="/upload" method="post" enctype="multipart/form-data">
+                                <input type="file" name="images" multiple>
+                                <button type="submit" value="Upload" class="btn btn-primary">Upload</button>
+                            </form>   
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
